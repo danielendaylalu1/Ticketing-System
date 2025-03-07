@@ -18,7 +18,7 @@ export const getUserInfo = (token: string | null) => {
   if (!token) return null;
   try {
     const decodedToken: CustomJwtPayload = jwtDecode(token);
-    console.log("decodedToken", decodedToken);
+
     return decodedToken;
   } catch (error) {
     console.error("Invalid token:", error);
@@ -56,7 +56,6 @@ function App() {
 
   if (token) {
     scheduleAutoLogout(token, () => {
-      console.log("Token expired, logging out...");
       localStorage.removeItem("ticket-token"); // Clear token
       window.location.href = "/login"; // Redirect to login
     });
@@ -67,25 +66,21 @@ function App() {
   const [message, setMessage] = useState("");
 
   const openModal = () => {
-    console.log("ok");
     setIsModalOpen(true);
   };
 
   const onSubmit = async (values: FieldType) => {
-    console.log("Success:", values);
-    console.log("Success:", values);
     setMessage("");
     setIsLoading(true);
     const baseUrl = import.meta.env.VITE_API_BASE_URI;
     try {
-      console.log("baseUrl", baseUrl);
       const response = await axios.post(`${baseUrl}/tickets`, values, {
         headers: {
           Authorization: `Bearer ${token}`, // Add Bearer token
           "Content-Type": "application/json", // Optional
         },
       });
-      console.log("response", response);
+
       if (response.status === 201) {
         setIsSuccess(true);
         setMessage("Ticket created successfuly!");

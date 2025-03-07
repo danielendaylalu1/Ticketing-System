@@ -16,14 +16,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (values: FieldType) => {
-    console.log("Success:", values);
     setMessage("");
     setIsLoading(true);
     const baseUrl = import.meta.env.VITE_API_BASE_URI;
     try {
-      console.log("baseUrl", baseUrl);
       const response = await axios.post(`${baseUrl}/auth/login`, values);
-      console.log("response", response);
+
       if (response.status === 200) {
         setIsSuccess(true);
         setMessage("Wellcome again");

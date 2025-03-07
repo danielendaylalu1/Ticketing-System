@@ -18,15 +18,12 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (values: FieldType) => {
-    console.log("Success:", values);
-    console.log("Success:", values);
     setMessage("");
     setIsLoading(true);
     const baseUrl = import.meta.env.VITE_API_BASE_URI;
     try {
-      console.log("baseUrl", baseUrl);
       const response = await axios.post(`${baseUrl}/auth/signup`, values);
-      console.log("response", response);
+
       if (response.status === 201) {
         setIsSuccess(true);
         setMessage("registerd successfuly!");
@@ -62,7 +59,7 @@ const Register = () => {
       }, 3000);
     }
   };
-  console.log("isSuccess", isSuccess);
+
   return (
     <div className="min-h-dvh flex justify-center items-center !p-6 w-full">
       <div className="lg:w-1/3 min-w-[350px] !p-6 border flex flex-col gap-4 justify-center items-center bg-white border-gray-50 shadow-xl rounded-lg">

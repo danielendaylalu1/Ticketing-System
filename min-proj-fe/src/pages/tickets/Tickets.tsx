@@ -61,8 +61,6 @@ const Tickets = () => {
       });
       const data: TicketType[] = tickets.data;
       setTickets(data);
-
-      console.log("tickets", tickets);
     } catch (error) {
       let errorMessage = "Faild to fetch tickets";
 
@@ -92,7 +90,6 @@ const Tickets = () => {
     setIsUpdateLoading(true);
     const baseUrl = import.meta.env.VITE_API_BASE_URI;
     try {
-      console.log("baseUrl", baseUrl);
       const response = await axios.put(
         `${baseUrl}/tickets/${tiketId}`,
         { status: newStatus },
