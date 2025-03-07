@@ -129,10 +129,13 @@ const Register = () => {
                   name="adminsecret"
                   label="Role Secret key"
                   rules={[
-                    { required: true, message: "Please input admin secret" },
+                    {
+                      required: true,
+                      message: "Please input admin secret",
+                    },
                   ]}
                 >
-                  <Input />
+                  <Input placeholder="iam-admin" />
                 </Form.Item>
               ) : null
             }
